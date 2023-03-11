@@ -1,22 +1,52 @@
 import { Set2D } from "./Set2D";
 
-export class FreqMap2D {
+
+export class DelayedFreqMap2D {
     /**
      * An object that contains of two keys, one for each component of the 2D vector, and the final value being the frequency of the vector in this frequency map
      */
-    private value_lookup: Map<number, Map<number, number>> = new Map<number, Map<number, number>>()
+    private value_lookup: Map<number, Map<number, number>> = new Map()
 
     /**
-     * An object that contains of keys that represent the frequencies of each vector and a Set2D of each vector that corresponds to that frequency
+     * An object that contains of keys that represent the frequencies of each vector and a Set2D of each vector that corresponds to that frequency (not initialized until init_freq_data is called)
      */
-    private freq_lookup: Map<number, Set2D> = new Map<number, Set2D> ()
+    private freq_lookup: Map<number, Set2D> = new Map()
     
     constructor() {}
+
+    get_with_freqs_set_direct(...freqs: number[]): Set2D {
+        const set = new Set2D();
+        for (const pair of this.value_lookup) {
+            for (const secondPair of pair[1]) {
+                const freq = secondPair[1]
+                if (freqs.some(inputFreq => inputFreq === freq)) {
+                    set.add(pair[0], secondPair[0]);
+                }
+            }
+        }
+
+        return set;
+    }
+
+    init_freq_data() {
+        this.freq_lookup = new Map();
+        for (const pair of this.value_lookup) {
+            for (const secondPair of pair[1]) {
+                const freq = secondPair[1]
+                if (this.freq_lookup.has(freq)) {
+                    this.freq_lookup.get(freq)?.add(pair[0], secondPair[0])
+                } else {
+                    this.freq_lookup.set(freq, new Set2D([[pair[0], secondPair[0]]]) );
+                }
+            }
+        }
+    }
 
     full_clear() {
         this.value_lookup = new Map();
         this.freq_lookup = new Map();
     }
+
 
     clear(): void {
         [...this.value_lookup.values()].forEach(secondMap => secondMap.clear());
@@ -35,36 +65,15 @@ export class FreqMap2D {
         }
 
         let secondMap: Map<number, number> | undefined;
-        let current_freq = freqToAdd; //assumes that there is no instances in the FreqMap2D
         if (secondMap = this.value_lookup.get(first)) {
             let freq: number | undefined
             if (freq = secondMap.get(second)) {
                 secondMap.set(second, freq + freqToAdd);
-                current_freq = freq + freqToAdd;
             } else {
                 secondMap.set(second, freqToAdd)
             }
         } else {
             this.value_lookup.set(first, new Map<number, number>([[second, freqToAdd]]))
-        }
-
-        let last_freq = current_freq - freqToAdd;
-        let lastFreqSet2D: Set2D | undefined
-        if (lastFreqSet2D = this.freq_lookup.get(last_freq)) {
-            if (lastFreqSet2D.has(first, second)) {
-                lastFreqSet2D.remove(first, second);
-
-                // if (lastFreqSet2D.length === 0) {
-                //     this.freq_lookup.delete(last_freq)
-                // }
-            }
-        }
-
-        let currentFreqSet2D: Set2D | undefined
-        if (currentFreqSet2D = this.freq_lookup.get(current_freq)) {
-            currentFreqSet2D.add(first, second)
-        } else {
-            this.freq_lookup.set(current_freq, new Set2D([[first, second]]));
         }
     }
 
