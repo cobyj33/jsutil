@@ -2,7 +2,22 @@
   "name": "jsutil",
   "version": "1.0.0",
   "description": "Common personal utility interfaces for cobyj33 which include data structures, math functions, utility classes, etc...",
-  "main": "index.js",
+  "exports": {
+    ".": {
+        "default": "./dist/index.js"
+    },
+    "./browser": {
+        "browser": {
+            "default": "./dist/browser/index.js"
+        }
+    },
+    "./react": {
+        "browser": {
+            "default": "./dist/react/index.js"
+        }
+    }
+  },
+  "types": "./dist/types/index.d.ts",
   "scripts": {
     "test": "jest"
   },
