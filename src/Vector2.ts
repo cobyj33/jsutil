@@ -1,3 +1,4 @@
+import { Set2D } from "./Set2D";
 
 export interface IVector2 {
     readonly row: number;
@@ -286,8 +287,6 @@ export function vector2Abs(vec: IVector2): IVector2 {
 }
 
 
-// Program Specific
-import { Set2D } from "./Set2D";
 
 function vector2ListToSet2D(list: IVector2[]): Set2D {
     const set2D: Set2D = new Set2D()

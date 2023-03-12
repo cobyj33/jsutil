@@ -6,10 +6,12 @@
     ".": "./dist/index.js",
     "./browser": {
         "default": "./dist/browser/index.js",
-        "types": "./dist/types/browser/index.d.ts"
+        "types": "./dist/types/browser/index.d.ts",
+        "import": "./dist/browser/index.js"
     },
     "./react": {
         "default": "./dist/react/index.js",
+        "import": "./dist/react/index.js",
         "types": "./dist/types/react/index.d.ts"
     }
   },

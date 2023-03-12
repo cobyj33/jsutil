@@ -179,6 +179,35 @@ export function isEqualNumberArray(first: number[], second: number[]) {
 }
 
 /**
+ * Determines if two number matrices are equal to each other
+ * 
+ * Two number matrices are considered equal if they have the same amount of rows, the same amount of columns in each row, and each data point is equal and in the same place
+ * 
+ * @param first A number matrix
+ * @param second Another number matrix
+ * @returns Whether the two matrices are equal according to the described conditions above
+ */
+export function isEqualNumberMatrix(first: number[][], second: number[][]) {
+    if (first.length !== second.length) {
+        return false;
+    }
+
+    for (let row = 0; row < first.length; row++) {
+        if (first[row].length !== second[row].length) {
+            return false;
+        } 
+
+        for (let col = 0; col < first.length; col++) {
+            if (first[row][col] !== second[row][col]) {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
+/**
  * Determines if two number arrays are similar according to if they have the same data points, although they may not be in the same order
  * 
  * @param first A number array
@@ -233,3 +262,4 @@ export function concatUint8ClampedArrays(...arrays: Uint8ClampedArray[]): Uint8C
     }
     return newArray
 }
+
