@@ -4,9 +4,16 @@
   "description": "Common personal utility interfaces for cobyj33 which include data structures, math functions, utility classes, etc...",
   "exports": {
     ".": "./dist/index.js",
-    "./browser": "./dist/browser/index.js",
-    "./react": "./dist/react/index.js"
+    "./browser": {
+        "default": "./dist/browser/index.js",
+        "types": "./dist/types/browser/index.d.ts"
+    },
+    "./react": {
+        "default": "./dist/react/index.js",
+        "types": "./dist/types/react/index.d.ts"
+    }
   },
+  "main": "./dist/index.js",
   "types": "./dist/types/index.d.ts",
   "scripts": {
     "test": "jest"
