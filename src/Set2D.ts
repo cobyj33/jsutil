@@ -6,12 +6,7 @@ export class Set2D {
 
     constructor(values: Array<[number, number]> | Set2D = []) {
         this._length = 0;
-
-        if (Array.isArray(values)) {
-            values.forEach(value => this.add(value[0], value[1])); 
-        } else {
-            values.forEach(([first, second]) => this.add(first, second))
-        }
+        values.forEach(value => this.add(value[0], value[1])); 
     }
 
     fullClear() {

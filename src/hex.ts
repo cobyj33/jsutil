@@ -38,18 +38,13 @@ export function getHexDigitNumber(char: HexDigitCharacter): HexNumber {
     return HEX_DIGIT_CHARS_TO_NUMBERS[char]
 }
 
-export function isRawHexNumberString(rawHex: string) {
+export function isRawHexNumberString(rawHex: string): boolean {
     return rawHex.split("").every(char => isHexDigitCharacter(char))
 }
 
-export function parseRawHexNumberString(rawHex: string) {
+export function parseRawHexNumberString(rawHex: string): number {
     if (isRawHexNumberString(rawHex)) {
-        let num = 0;
-        for (let placeValue = 0; placeValue < rawHex.length; placeValue++) {
-            const rawHexIndex = rawHex.length - 1 - placeValue;
-            num += getHexDigitNumber(rawHex[rawHexIndex] as HexDigitCharacter) * Math.pow(16, placeValue)
-        }
-        return num
+        return Number.parseInt(rawHex, 16)
     }
 
     throw new Error(`Cannot parse invalid raw hex number ${rawHex}`)
