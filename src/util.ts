@@ -1,6 +1,46 @@
 import { IDimension2D } from "./Dimension";
 
 /**
+ * Generic duplicate removal function
+ * Not ideal for performance, but still works in almost all cases
+ * @param list A List of anything (objects, numbers, strings, booleans) except callback functions 
+ * @returns A list with removed duplicates
+ */
+export function removeDuplicatesGeneric<T extends object | string | number | boolean | null>(list: T[]): T[] {
+    const tracker = new Set<string>()
+
+    return list.filter(val => {
+        const stringified: string = JSON.stringify(val);
+        if (tracker.has(stringified)) {
+            return false;
+        } else {
+            tracker.add(stringified)
+            return true
+        }
+    })
+}
+
+/**
+ * Generic duplicate detection function
+ * Not ideal for performance, but still works in almost all cases 
+ * @param list A List of anything (objects, numbers, strings, booleans) except callback functions 
+ * @returns Whether any duplicate could be found or not
+ */
+export function hasDuplicatesGeneric<T extends object | string | number | boolean | null>(list: T[]): boolean {
+    const tracker = new Set<string>([])
+
+    for (let i = 0; i < list.length; i++) {
+        const stringified: string = JSON.stringify(list[i]);
+        if (tracker.has(stringified)) {
+            return true;
+        } else {
+            tracker.add(stringified)
+        }
+    }
+    return false;
+}
+
+/**
  * Clamp a value in an interval [lower, higher], where if the number is lower than the clamp value, it will be fit to the lower value, and if the number is higher than the top clamp value, it will be fit to the highest value. If the value is in the interval [lower, higher], the value simply returns itself
  * @example clamp(4, 5, 10) => 5; clamp(20, 5, 10) => 10; clamp(7, 5, 10) => 7
  * 

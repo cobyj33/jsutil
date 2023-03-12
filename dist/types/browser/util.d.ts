@@ -7,7 +7,6 @@
  * Probably would need to be modified to work in a non-static site generator, but it does fit into the context of this program
  */
 export declare function requestWebDownload(data: Blob, fileName: string): void;
-export declare function isImageFile(file: {
-    type: string;
-}): boolean;
+export declare function isEqualDOMRect(first: DOMRect, second: DOMRect): boolean;
+export declare function isImageFile(file: File): boolean;
 //# sourceMappingURL=util.d.ts.map

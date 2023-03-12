@@ -19,9 +19,11 @@ export function requestWebDownload(data: Blob, fileName: string): void {
     document.body.removeChild(downloadAnchor)
 }
 
+export function isEqualDOMRect(first: DOMRect, second: DOMRect) {
+    return first.x === second.x && first.y === second.y && first.width === second.width && first.height === second.height
+}
 
-
-export function isImageFile(file: { type: string }): boolean {
+export function isImageFile(file: File): boolean {
   const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
   return validImageTypes.some(imageType => imageType === file.type)
 }

@@ -1,6 +1,46 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.concatUint8ClampedArrays = exports.flipObject = exports.isInBounds2D = exports.isError = exports.capitalized = exports.isSimilarNumberArray = exports.isEqualNumberArray = exports.getArrayFrequencyMap = exports.forEach2D = exports.getRectangularMatrixDimensions = exports.isRectangularMatrix = exports.range = exports.clamp = void 0;
+exports.concatUint8ClampedArrays = exports.flipObject = exports.isInBounds2D = exports.isError = exports.capitalized = exports.isSimilarNumberArray = exports.isEqualNumberArray = exports.getArrayFrequencyMap = exports.forEach2D = exports.getRectangularMatrixDimensions = exports.isRectangularMatrix = exports.range = exports.clamp = exports.hasDuplicatesGeneric = exports.removeDuplicatesGeneric = void 0;
+/**
+ * Generic duplicate removal function
+ * Not ideal for performance, but still works in almost all cases
+ * @param list A List of anything (objects, numbers, strings, booleans) except callback functions
+ * @returns A list with removed duplicates
+ */
+function removeDuplicatesGeneric(list) {
+    const tracker = new Set();
+    return list.filter(val => {
+        const stringified = JSON.stringify(val);
+        if (tracker.has(stringified)) {
+            return false;
+        }
+        else {
+            tracker.add(stringified);
+            return true;
+        }
+    });
+}
+exports.removeDuplicatesGeneric = removeDuplicatesGeneric;
+/**
+ * Generic duplicate detection function
+ * Not ideal for performance, but still works in almost all cases
+ * @param list A List of anything (objects, numbers, strings, booleans) except callback functions
+ * @returns Whether any duplicate could be found or not
+ */
+function hasDuplicatesGeneric(list) {
+    const tracker = new Set([]);
+    for (let i = 0; i < list.length; i++) {
+        const stringified = JSON.stringify(list[i]);
+        if (tracker.has(stringified)) {
+            return true;
+        }
+        else {
+            tracker.add(stringified);
+        }
+    }
+    return false;
+}
+exports.hasDuplicatesGeneric = hasDuplicatesGeneric;
 /**
  * Clamp a value in an interval [lower, higher], where if the number is lower than the clamp value, it will be fit to the lower value, and if the number is higher than the top clamp value, it will be fit to the highest value. If the value is in the interval [lower, higher], the value simply returns itself
  * @example clamp(4, 5, 10) => 5; clamp(20, 5, 10) => 10; clamp(7, 5, 10) => 7

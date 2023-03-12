@@ -1,4 +1,3 @@
-export {}
 import { isEqualNumberArray, isSimilarNumberArray, range } from "../src/util"
 
 test("Is Equal Number Array - Exact", () => {

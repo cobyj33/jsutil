@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isImageFile = exports.requestWebDownload = void 0;
+exports.isImageFile = exports.isEqualDOMRect = exports.requestWebDownload = void 0;
 /**
  * Make the user download a file onto their computer
  *
@@ -20,6 +20,10 @@ function requestWebDownload(data, fileName) {
     document.body.removeChild(downloadAnchor);
 }
 exports.requestWebDownload = requestWebDownload;
+function isEqualDOMRect(first, second) {
+    return first.x === second.x && first.y === second.y && first.width === second.width && first.height === second.height;
+}
+exports.isEqualDOMRect = isEqualDOMRect;
 function isImageFile(file) {
     const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
     return validImageTypes.some(imageType => imageType === file.type);
