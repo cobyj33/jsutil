@@ -1,4 +1,3 @@
+import React from "react";
 type GenericType<T> = T;
-type ReactDispatch<T> = (value: T) => T
-type ReactSetStateAction<T> = T | ((prevState: T) => T);
-export interface StatefulData<T> extends GenericType<[T, ReactDispatch<ReactSetStateAction<T>>]> { }
+export interface StatefulData<T> extends GenericType<[T, React.Dispatch<React.SetStateAction<T>>]> { }
