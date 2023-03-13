@@ -2,6 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.HistoryStack = void 0;
 class HistoryStack {
+    history = [];
+    index;
+    _maxLength;
     get maxLength() { return this._maxLength; }
     set maxLength(request) {
         if (request <= 0) {
@@ -20,7 +23,6 @@ class HistoryStack {
     }
     get empty() { return this.history.length === 0; }
     constructor() {
-        this.history = [];
         this.index = 0;
         this._maxLength = 30;
         this.history = [];

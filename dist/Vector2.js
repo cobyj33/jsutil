@@ -3,6 +3,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.removeVector2ListMatches = exports.filterVector2ListMatches = exports.removeVector2ListDuplicates = exports.filterVector2ListDuplicates = exports.getVector2ListDuplicates = exports.isIVector2 = exports.vector2Abs = exports.vector2IsInteger = exports.lerp = exports.vector2Equals = exports.dotProductVector2 = exports.angleBetweenVector2 = exports.midPointBetweenVector2 = exports.distanceBetweenVector2 = exports.vector2FromAngle = exports.roundVector2 = exports.scaleVector2 = exports.subtractVector2 = exports.vector2Int = exports.addVector2 = exports.translateVector2 = exports.vector2ToString = exports.vector2Normalized = exports.vector2AlterToRow = exports.vector2AlterToCol = exports.vector2ToAngle = exports.vector2ToLength = exports.rotateVector2 = exports.getVectorLength = exports.adjacentVector2 = exports.Vector2 = void 0;
 const Set2D_1 = require("./Set2D");
 class Vector2 {
+    row;
+    col;
+    static ZERO = new Vector2(0, 0);
+    static EAST = new Vector2(1, 0);
+    static WEST = new Vector2(-1, 0);
+    static NORTH = new Vector2(0, -1);
+    static SOUTH = new Vector2(0, 1);
+    static NORTHWEST = Vector2.NORTH.add(Vector2.WEST).normalize();
+    static SOUTHWEST = Vector2.SOUTH.add(Vector2.WEST).normalize();
+    static NORTHEAST = Vector2.NORTH.add(Vector2.EAST).normalize();
+    static SOUTHEAST = Vector2.SOUTH.add(Vector2.EAST).normalize();
     constructor(row, col) {
         this.row = row;
         this.col = col;
@@ -129,15 +140,6 @@ class Vector2 {
     }
 }
 exports.Vector2 = Vector2;
-Vector2.ZERO = new Vector2(0, 0);
-Vector2.EAST = new Vector2(1, 0);
-Vector2.WEST = new Vector2(-1, 0);
-Vector2.NORTH = new Vector2(0, -1);
-Vector2.SOUTH = new Vector2(0, 1);
-Vector2.NORTHWEST = Vector2.NORTH.add(Vector2.WEST).normalize();
-Vector2.SOUTHWEST = Vector2.SOUTH.add(Vector2.WEST).normalize();
-Vector2.NORTHEAST = Vector2.NORTH.add(Vector2.EAST).normalize();
-Vector2.SOUTHEAST = Vector2.SOUTH.add(Vector2.EAST).normalize();
 function adjacentVector2(vec) {
     const offsets = [{ row: 0, col: 1 }, { row: 0, col: -1 }, { row: 1, col: 0 }, { row: -1, col: 0 }];
     return offsets.map(offset => addVector2(vec, offset));

@@ -7,6 +7,10 @@ const util_1 = require("./util");
  * Stores color data as an RGBA with each value in the range 0 - 255
  */
 class Color {
+    red;
+    green;
+    blue;
+    alpha;
     constructor(red, green, blue, alpha) {
         this.red = red;
         this.green = green;

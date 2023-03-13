@@ -2,8 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Set2D = void 0;
 class Set2D {
+    map = new Map();
+    _length;
     constructor(values = []) {
-        this.map = new Map();
         this._length = 0;
         values.forEach(value => this.add(value[0], value[1]));
     }
@@ -48,9 +49,8 @@ class Set2D {
         this.map.forEach((set, first) => set.forEach(second => callbackfn([first, second])));
     }
     add(first, second) {
-        var _a, _b;
-        if (((_a = this.map.get(first)) === null || _a === void 0 ? void 0 : _a.has(second)) === false) {
-            (_b = this.map.get(first)) === null || _b === void 0 ? void 0 : _b.add(second);
+        if (this.map.get(first)?.has(second) === false) {
+            this.map.get(first)?.add(second);
             this._length += 1;
         }
         else if (this.map.has(first) === false) {
@@ -71,8 +71,7 @@ class Set2D {
         }
     }
     has(first, second) {
-        var _a;
-        return ((_a = this.map.get(first)) === null || _a === void 0 ? void 0 : _a.has(second)) || false;
+        return this.map.get(first)?.has(second) || false;
     }
     hasAll(tuples) {
         return tuples.every(tuple => this.has(tuple[0], tuple[1]));

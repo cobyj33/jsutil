@@ -6,6 +6,10 @@ const Dimension_1 = require("./Dimension");
 const LineSegment_1 = require("./LineSegment");
 const Range_1 = require("./Range");
 class Box {
+    topleft;
+    size;
+    static ZERO = Box.from(0, 0, 0, 0);
+    static MAX = Box.from(-Math.sqrt(Number.MAX_VALUE) / 2 - 1, -Math.sqrt(Number.MAX_VALUE) / 2 - 1, Math.sqrt(Number.MAX_VALUE) - 1, Math.sqrt(Number.MAX_VALUE) - 1);
     constructor(topleft, size) {
         this.topleft = Vector2_1.Vector2.fromData(topleft);
         this.size = Dimension_1.Dimension2D.fromData(size);
@@ -140,8 +144,6 @@ class Box {
     }
 }
 exports.Box = Box;
-Box.ZERO = Box.from(0, 0, 0, 0);
-Box.MAX = Box.from(-Math.sqrt(Number.MAX_VALUE) / 2 - 1, -Math.sqrt(Number.MAX_VALUE) / 2 - 1, Math.sqrt(Number.MAX_VALUE) - 1, Math.sqrt(Number.MAX_VALUE) - 1);
 // export function getBoxCorners(box: IBox): [IVector2, IVector2, IVector2, IVector2] {
 //     return [box.topleft, { row: box.topleft.row + box.size.width, }, this.bottomleft, this.bottomright]
 // }

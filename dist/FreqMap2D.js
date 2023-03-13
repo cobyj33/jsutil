@@ -3,16 +3,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.FreqMap2D = void 0;
 const Set2D_1 = require("./Set2D");
 class FreqMap2D {
-    constructor() {
-        /**
-         * An object that contains of two keys, one for each component of the 2D vector, and the final value being the frequency of the vector in this frequency map
-         */
-        this.value_lookup = new Map();
-        /**
-         * An object that contains of keys that represent the frequencies of each vector and a Set2D of each vector that corresponds to that frequency
-         */
-        this.freq_lookup = new Map();
-    }
+    /**
+     * An object that contains of two keys, one for each component of the 2D vector, and the final value being the frequency of the vector in this frequency map
+     */
+    value_lookup = new Map();
+    /**
+     * An object that contains of keys that represent the frequencies of each vector and a Set2D of each vector that corresponds to that frequency
+     */
+    freq_lookup = new Map();
+    constructor() { }
     full_clear() {
         this.value_lookup = new Map();
         this.freq_lookup = new Map();
@@ -129,12 +128,10 @@ class FreqMap2D {
         }
     }
     has(row, col) {
-        var _a;
-        return ((_a = this.value_lookup.get(row)) === null || _a === void 0 ? void 0 : _a.has(col)) || false;
+        return this.value_lookup.get(row)?.has(col) || false;
     }
     get_freq(row, col) {
-        var _a;
-        const freq = (_a = this.value_lookup.get(row)) === null || _a === void 0 ? void 0 : _a.get(col);
+        const freq = this.value_lookup.get(row)?.get(col);
         return freq !== undefined ? freq : 0;
     }
     get_with_freq(freq) {

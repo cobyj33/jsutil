@@ -4,6 +4,8 @@ exports.LineSegment = void 0;
 const shapes_1 = require("./shapes");
 const Vector2_1 = require("./Vector2");
 class LineSegment {
+    start;
+    end;
     constructor(start, end) {
         this.start = Vector2_1.Vector2.fromData(start);
         this.end = Vector2_1.Vector2.fromData(end);

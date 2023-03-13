@@ -2,8 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CyclicalArray = void 0;
 class CyclicalArray {
+    array = [];
+    currentIndex;
     constructor(array) {
-        this.array = [];
         if (array.length === 0) {
             throw new Error("Cannot have empty CyclicalArray");
         }

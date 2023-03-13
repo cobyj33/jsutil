@@ -2,6 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.rangeIntersect = exports.rangeContains = exports.Range = void 0;
 class Range {
+    start;
+    end;
     constructor(start, end) {
         this.start = start;
         this.end = end;

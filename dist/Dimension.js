@@ -2,6 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Dimension2D = void 0;
 class Dimension2D {
+    width;
+    height;
+    static ZERO = new Dimension2D(0, 0);
     constructor(width, height) {
         this.width = width;
         this.height = height;
@@ -53,4 +56,3 @@ class Dimension2D {
     }
 }
 exports.Dimension2D = Dimension2D;
-Dimension2D.ZERO = new Dimension2D(0, 0);

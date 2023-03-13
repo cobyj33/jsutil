@@ -3,30 +3,36 @@
     "version": "1.0.0",
     "description": "Common personal utility interfaces for cobyj33 which include data structures, math functions, utility classes, etc...",
     "exports": {
-    ".": {
-        "import": {
-            "default": "./dist/index.js"
+        ".": {
+            "import": {
+                "default": "./dist/index.js"
+            },
+            "types": {
+                "default": "./dist/types/index.d.ts"
+            }
+        },  
+        "./browser": {
+            "import": {
+                "default": "./dist/browser/index.js"
+            },
+            "types": {
+                "default": "./dist/types/browser/index.d.ts"
+            }
         },
-        "types": {
-            "default": "./dist/types/index.d.ts"
-        }
-    },  
-    "./browser": {
-        "import": {
-            "default": "./dist/browser/index.js"
-        },
-        "types": {
-            "default": "./dist/types/browser/index.d.ts"
+        "./react": {
+            "import": {
+                "default": "./dist/react/index.js"
+            },
+            "types": {
+                "default": "./dist/types/react/index.d.ts"
+            }
         }
     },
-    "./react": {
-        "import": {
-            "default": "./dist/react/index.js"
-        },
-        "types": {
-            "default": "./dist/types/react/index.d.ts"
+    "typesVersions": {
+        "*": {
+            "browser": [ "dist/types/browser/index.d.ts"],
+            "react": ["dist/types/react/index.ts"]
         }
-    }
     },
     "main": "./dist/index.js",
     "types": "./dist/types/index.d.ts",

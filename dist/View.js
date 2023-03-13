@@ -3,6 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getViewOffset = exports.View = void 0;
 const Vector2_1 = require("./Vector2");
 class View {
+    position;
+    cellSize;
     constructor(position, cellSize) {
         this.position = Vector2_1.Vector2.fromData(position);
         this.cellSize = cellSize;

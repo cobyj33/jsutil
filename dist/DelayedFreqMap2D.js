@@ -3,16 +3,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DelayedFreqMap2D = void 0;
 const Set2D_1 = require("./Set2D");
 class DelayedFreqMap2D {
-    constructor() {
-        /**
-         * An object that contains of two keys, one for each component of the 2D vector, and the final value being the frequency of the vector in this frequency map
-         */
-        this.value_lookup = new Map();
-        /**
-         * An object that contains of keys that represent the frequencies of each vector and a Set2D of each vector that corresponds to that frequency (not initialized until init_freq_data is called)
-         */
-        this.freq_lookup = new Map();
-    }
+    /**
+     * An object that contains of two keys, one for each component of the 2D vector, and the final value being the frequency of the vector in this frequency map
+     */
+    value_lookup = new Map();
+    /**
+     * An object that contains of keys that represent the frequencies of each vector and a Set2D of each vector that corresponds to that frequency (not initialized until init_freq_data is called)
+     */
+    freq_lookup = new Map();
+    constructor() { }
     get_with_freqs_set_direct(...freqs) {
         const set = new Set2D_1.Set2D();
         for (const pair of this.value_lookup) {
@@ -26,13 +25,12 @@ class DelayedFreqMap2D {
         return set;
     }
     init_freq_data() {
-        var _a;
         this.freq_lookup = new Map();
         for (const pair of this.value_lookup) {
             for (const secondPair of pair[1]) {
                 const freq = secondPair[1];
                 if (this.freq_lookup.has(freq)) {
-                    (_a = this.freq_lookup.get(freq)) === null || _a === void 0 ? void 0 : _a.add(pair[0], secondPair[0]);
+                    this.freq_lookup.get(freq)?.add(pair[0], secondPair[0]);
                 }
                 else {
                     this.freq_lookup.set(freq, new Set2D_1.Set2D([[pair[0], secondPair[0]]]));
@@ -137,12 +135,10 @@ class DelayedFreqMap2D {
         }
     }
     has(row, col) {
-        var _a;
-        return ((_a = this.value_lookup.get(row)) === null || _a === void 0 ? void 0 : _a.has(col)) || false;
+        return this.value_lookup.get(row)?.has(col) || false;
     }
     get_freq(row, col) {
-        var _a;
-        const freq = (_a = this.value_lookup.get(row)) === null || _a === void 0 ? void 0 : _a.get(col);
+        const freq = this.value_lookup.get(row)?.get(col);
         return freq !== undefined ? freq : 0;
     }
     get_with_freq(freq) {

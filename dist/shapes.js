@@ -6,7 +6,7 @@ const Vector2_1 = require("./Vector2");
 exports.Supported2DShapes = ["LINE", "ELLIPSE", "CIRCLE", "BOX", "SQUARE"];
 const getLine = (start, end) => {
     if (start.row === end.row && start.col === end.col) {
-        return [Object.assign({}, start)];
+        return [{ ...start }];
     }
     const { row: row1, col: col1 } = start;
     const { row: row2, col: col2 } = end;
@@ -38,7 +38,7 @@ const getLine = (start, end) => {
 exports.getLine = getLine;
 const getEllipse = (start, end) => {
     if (start.row === end.row && start.col === end.col) {
-        return [Object.assign({}, start)];
+        return [{ ...start }];
     }
     const { row: row1, col: col1 } = start;
     const { row: row2, col: col2 } = end;
