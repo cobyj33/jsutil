@@ -13,12 +13,17 @@ export class Box implements IBox {
     readonly topleft: Vector2
     readonly size: Dimension2D
 
-    static readonly ZERO: Box = new Box({ row: 0, col: 0}, { width: 0, height: 0 })
-    static readonly MAX: Box = new Box({ row: -Math.sqrt(Number.MAX_VALUE) / 2 - 1, col: -Math.sqrt(Number.MAX_VALUE) / 2 - 1 }, { width: Math.sqrt(Number.MAX_VALUE) - 1, height: Math.sqrt(Number.MAX_VALUE) - 1 } )
+    static ZERO: Box
+    static MAX: Box
 
     constructor(topleft: IVector2, size: IDimension2D) {
         this.topleft = Vector2.fromData(topleft)
         this.size = Dimension2D.fromData(size)
+    }
+
+    static {
+        Box.ZERO = Box.from(0, 0, 0, 0)
+        Box.MAX = Box.from(-Math.sqrt(Number.MAX_VALUE) / 2 - 1, -Math.sqrt(Number.MAX_VALUE) / 2 - 1 ,  Math.sqrt(Number.MAX_VALUE) - 1, Math.sqrt(Number.MAX_VALUE) - 1 )
     }
 
     static from(row: number, col: number, width: number, height: number) {

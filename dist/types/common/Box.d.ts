@@ -8,8 +8,8 @@ export interface IBox {
 export declare class Box implements IBox {
     readonly topleft: Vector2;
     readonly size: Dimension2D;
-    static readonly ZERO: Box;
-    static readonly MAX: Box;
+    static ZERO: Box;
+    static MAX: Box;
     constructor(topleft: IVector2, size: IDimension2D);
     static from(row: number, col: number, width: number, height: number): Box;
     static fromData(box: IBox): Box;
