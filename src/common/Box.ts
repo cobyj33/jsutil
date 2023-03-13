@@ -21,15 +21,14 @@ export class Box implements IBox {
         this.size = Dimension2D.fromData(size)
     }
 
+    static from(row: number, col: number, width: number, height: number) {
+        return new Box(new Vector2(row, col), new Dimension2D(width, height))
+    }
+    
     static {
         Box.ZERO = Box.from(0, 0, 0, 0)
         Box.MAX = Box.from(-Math.sqrt(Number.MAX_VALUE) / 2 - 1, -Math.sqrt(Number.MAX_VALUE) / 2 - 1 ,  Math.sqrt(Number.MAX_VALUE) - 1, Math.sqrt(Number.MAX_VALUE) - 1 )
     }
-
-    static from(row: number, col: number, width: number, height: number) {
-        return new Box(new Vector2(row, col), new Dimension2D(width, height))
-    }
-
     
     static fromData(box: IBox) {
         return new Box(box.topleft, box.size)
