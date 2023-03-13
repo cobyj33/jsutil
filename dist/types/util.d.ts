@@ -1,4 +1,7 @@
 import { IDimension2D } from "./Dimension";
+export type Nullable<T> = {
+    [K in keyof T]: T[K] | null;
+};
 /**
  * Generic duplicate removal function
  * Not ideal for performance, but still works in almost all cases
@@ -84,7 +87,8 @@ export declare function isEqualNumberMatrix(first: number[][], second: number[][
  */
 export declare function isSimilarNumberArray(first: number[], second: number[]): boolean;
 export declare function capitalized(word: string): string;
-export declare function isError(e: any): e is Error;
+export declare function isError(e: unknown): e is Error;
+export declare function getErrorMessage(e: unknown): string;
 export declare function isInBounds2D<T>(matrix: T[][], row: number, col: number): boolean;
 export declare function flipObject<T extends {
     [key in string | number | symbol]: string | number | symbol;
@@ -98,4 +102,5 @@ export declare function flipObject<T extends {
  * @returns A concatenated Uint8ClampedArray of all inputted arrays
  */
 export declare function concatUint8ClampedArrays(...arrays: Uint8ClampedArray[]): Uint8ClampedArray;
+export declare function isUint8(num: number): boolean;
 //# sourceMappingURL=util.d.ts.map

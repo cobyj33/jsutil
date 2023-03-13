@@ -1,4 +1,8 @@
 import { IVector2, Vector2 } from "./Vector2";
+export interface ILineSegment {
+    start: IVector2;
+    end: IVector2;
+}
 export declare class LineSegment implements ILineSegment {
     readonly start: Vector2;
     readonly end: Vector2;
@@ -10,9 +14,5 @@ export declare class LineSegment implements ILineSegment {
     cells(): IVector2[];
     length(): number;
     transform(callbackfn: (vec: Vector2) => Vector2): LineSegment;
-}
-export interface ILineSegment {
-    start: IVector2;
-    end: IVector2;
 }
 //# sourceMappingURL=LineSegment.d.ts.map

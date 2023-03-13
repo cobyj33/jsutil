@@ -27,8 +27,7 @@ class Color {
         throw new Error(`Could not create Color object from unrecognized CSS Color Name: ${name}`);
     }
     static random() {
-        const color = getRandomColor();
-        return new Color(color.red, color.green, color.blue, color.alpha);
+        return Color.fromRGBA(getRandomColor());
     }
     darken(percent) {
         return new Color((1 - percent) * this.red, (1 - percent) * this.green, (1 - percent) * this.blue, this.alpha);

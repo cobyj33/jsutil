@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.concatUint8ClampedArrays = exports.flipObject = exports.isInBounds2D = exports.isError = exports.capitalized = exports.isSimilarNumberArray = exports.isEqualNumberMatrix = exports.isEqualNumberArray = exports.getArrayFrequencyMap = exports.forEach2D = exports.getRectangularMatrixDimensions = exports.isRectangularMatrix = exports.range = exports.clamp = exports.hasDuplicatesGeneric = exports.removeDuplicatesGeneric = void 0;
+exports.isUint8 = exports.concatUint8ClampedArrays = exports.flipObject = exports.isInBounds2D = exports.getErrorMessage = exports.isError = exports.capitalized = exports.isSimilarNumberArray = exports.isEqualNumberMatrix = exports.isEqualNumberArray = exports.getArrayFrequencyMap = exports.forEach2D = exports.getRectangularMatrixDimensions = exports.isRectangularMatrix = exports.range = exports.clamp = exports.hasDuplicatesGeneric = exports.removeDuplicatesGeneric = void 0;
 /**
  * Generic duplicate removal function
  * Not ideal for performance, but still works in almost all cases
@@ -225,6 +225,22 @@ function isError(e) {
     return typeof (e) === "object" && e !== null && "stack" in e && typeof (e.stack) === 'string' && "message" in e && typeof (e.message) === 'string';
 }
 exports.isError = isError;
+function getErrorMessage(e) {
+    if (isError(e)) {
+        return e.message;
+    }
+    else if (typeof (e) === "string") {
+        return e;
+    }
+    else if (typeof (e) === "object" && e !== null && "toString" in e) {
+        return e.toString();
+    }
+    else if (typeof (e) === "number" || typeof (e) === "boolean") {
+        return e.toString();
+    }
+    return "";
+}
+exports.getErrorMessage = getErrorMessage;
 function isInBounds2D(matrix, row, col) {
     if (matrix.length === 0)
         return false;
@@ -252,3 +268,7 @@ function concatUint8ClampedArrays(...arrays) {
     return newArray;
 }
 exports.concatUint8ClampedArrays = concatUint8ClampedArrays;
+function isUint8(num) {
+    return Number.isInteger(num) && num >= 0 && num < 256;
+}
+exports.isUint8 = isUint8;

@@ -6,6 +6,14 @@ export declare class Vector2 implements IVector2 {
     readonly row: number;
     readonly col: number;
     static readonly ZERO: Vector2;
+    static readonly EAST: Vector2;
+    static readonly WEST: Vector2;
+    static readonly NORTH: Vector2;
+    static readonly SOUTH: Vector2;
+    static readonly NORTHWEST: Vector2;
+    static readonly SOUTHWEST: Vector2;
+    static readonly NORTHEAST: Vector2;
+    static readonly SOUTHEAST: Vector2;
     constructor(row: number, col: number);
     static fromData(vector: IVector2): Vector2;
     static fromDimension(width: number, height: number): Vector2;
@@ -38,7 +46,7 @@ export declare class Vector2 implements IVector2 {
     dot(other: IVector2): number;
     lerp(t: number, other: IVector2): Vector2;
     adjacent(): [Vector2, Vector2, Vector2, Vector2];
-    equals(other: any): boolean;
+    equals(other: IVector2): boolean;
     abs(): Vector2;
     min(): number;
     max(): number;
@@ -69,6 +77,7 @@ export declare function vector2Equals(vector: IVector2, other: IVector2): boolea
 export declare function lerp(t: number, first: IVector2, second: IVector2): IVector2;
 export declare function vector2IsInteger(vec: IVector2): boolean;
 export declare function vector2Abs(vec: IVector2): IVector2;
+export declare function isIVector2(obj: unknown): obj is IVector2;
 /**
  * Returns all Vector2s which are duplicates in the inputted list
  * Note that the outputted list will still be unique. If a value appears multiple times in the inputted list, it will appear once in the outputted list

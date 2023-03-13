@@ -44,6 +44,12 @@ class View {
     equals(other) {
         return this.cellSize === other.cellSize && this.position.equals(other.position);
     }
+    data() {
+        return {
+            position: this.position,
+            cellSize: this.cellSize
+        };
+    }
 }
 exports.View = View;
 function getViewOffset(view) {

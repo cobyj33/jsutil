@@ -16,6 +16,7 @@ export declare class View implements IView {
     offset(): Vector2;
     clone(): View;
     equals(other: View): boolean;
+    data(): IView;
 }
 export declare function getViewOffset(view: IView): IVector2;
 //# sourceMappingURL=View.d.ts.map

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.removeVector2ListMatches = exports.filterVector2ListMatches = exports.removeVector2ListDuplicates = exports.filterVector2ListDuplicates = exports.getVector2ListDuplicates = exports.vector2Abs = exports.vector2IsInteger = exports.lerp = exports.vector2Equals = exports.dotProductVector2 = exports.angleBetweenVector2 = exports.midPointBetweenVector2 = exports.distanceBetweenVector2 = exports.vector2FromAngle = exports.roundVector2 = exports.scaleVector2 = exports.subtractVector2 = exports.vector2Int = exports.addVector2 = exports.translateVector2 = exports.vector2ToString = exports.vector2Normalized = exports.vector2AlterToRow = exports.vector2AlterToCol = exports.vector2ToAngle = exports.vector2ToLength = exports.rotateVector2 = exports.getVectorLength = exports.adjacentVector2 = exports.Vector2 = void 0;
+exports.removeVector2ListMatches = exports.filterVector2ListMatches = exports.removeVector2ListDuplicates = exports.filterVector2ListDuplicates = exports.getVector2ListDuplicates = exports.isIVector2 = exports.vector2Abs = exports.vector2IsInteger = exports.lerp = exports.vector2Equals = exports.dotProductVector2 = exports.angleBetweenVector2 = exports.midPointBetweenVector2 = exports.distanceBetweenVector2 = exports.vector2FromAngle = exports.roundVector2 = exports.scaleVector2 = exports.subtractVector2 = exports.vector2Int = exports.addVector2 = exports.translateVector2 = exports.vector2ToString = exports.vector2Normalized = exports.vector2AlterToRow = exports.vector2AlterToCol = exports.vector2ToAngle = exports.vector2ToLength = exports.rotateVector2 = exports.getVectorLength = exports.adjacentVector2 = exports.Vector2 = void 0;
 const Set2D_1 = require("./Set2D");
 class Vector2 {
     constructor(row, col) {
@@ -107,12 +107,7 @@ class Vector2 {
         return adjacentVector2(this).map(vec => Vector2.fromData(vec));
     }
     equals(other) {
-        if (typeof (other) === "object") {
-            if ("row" in other && "col" in other) {
-                return vector2Equals(this, other);
-            }
-        }
-        return false;
+        return vector2Equals(this, other);
     }
     abs() {
         return Vector2.fromData(vector2Abs(this));
@@ -135,6 +130,14 @@ class Vector2 {
 }
 exports.Vector2 = Vector2;
 Vector2.ZERO = new Vector2(0, 0);
+Vector2.EAST = new Vector2(1, 0);
+Vector2.WEST = new Vector2(-1, 0);
+Vector2.NORTH = new Vector2(0, -1);
+Vector2.SOUTH = new Vector2(0, 1);
+Vector2.NORTHWEST = Vector2.NORTH.add(Vector2.WEST).normalize();
+Vector2.SOUTHWEST = Vector2.SOUTH.add(Vector2.WEST).normalize();
+Vector2.NORTHEAST = Vector2.NORTH.add(Vector2.EAST).normalize();
+Vector2.SOUTHEAST = Vector2.SOUTH.add(Vector2.EAST).normalize();
 function adjacentVector2(vec) {
     const offsets = [{ row: 0, col: 1 }, { row: 0, col: -1 }, { row: 1, col: 0 }, { row: -1, col: 0 }];
     return offsets.map(offset => addVector2(vec, offset));
@@ -240,6 +243,12 @@ function vector2Abs(vec) {
     return { row: Math.abs(vec.row), col: Math.abs(vec.col) };
 }
 exports.vector2Abs = vector2Abs;
+function isIVector2(obj) {
+    return typeof (obj) === "object" && obj !== null &&
+        "row" in obj && "col" in obj &&
+        typeof (obj.row) === "number" && typeof (obj.col) === "number";
+}
+exports.isIVector2 = isIVector2;
 function vector2ListToSet2D(list) {
     const set2D = new Set2D_1.Set2D();
     list.forEach(vec => set2D.add(vec.row, vec.col));

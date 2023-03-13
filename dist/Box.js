@@ -142,3 +142,6 @@ class Box {
 exports.Box = Box;
 Box.ZERO = Box.from(0, 0, 0, 0);
 Box.MAX = Box.from(-Math.sqrt(Number.MAX_VALUE) / 2 - 1, -Math.sqrt(Number.MAX_VALUE) / 2 - 1, Math.sqrt(Number.MAX_VALUE) - 1, Math.sqrt(Number.MAX_VALUE) - 1);
+// export function getBoxCorners(box: IBox): [IVector2, IVector2, IVector2, IVector2] {
+//     return [box.topleft, { row: box.topleft.row + box.size.width, }, this.bottomleft, this.bottomright]
+// }
