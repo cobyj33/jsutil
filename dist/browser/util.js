@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isImageFile = exports.isEqualDOMRect = exports.requestWebDownload = void 0;
+exports.pointerPositionInElement = exports.isImageFile = exports.isEqualDOMRect = exports.requestWebDownload = void 0;
 /**
  * Make the user download a file onto their computer
  *
@@ -29,3 +29,11 @@ function isImageFile(file) {
     return validImageTypes.some(imageType => imageType === file.type);
 }
 exports.isImageFile = isImageFile;
+function pointerPositionInElement(element, event) {
+    const elementBounds = element.getBoundingClientRect();
+    return {
+        row: Math.trunc(event.clientY - elementBounds.y),
+        col: Math.trunc(event.clientX - elementBounds.x)
+    };
+}
+exports.pointerPositionInElement = pointerPositionInElement;

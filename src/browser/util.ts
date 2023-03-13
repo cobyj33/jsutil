@@ -1,3 +1,4 @@
+import { IVector2 } from "../index";
 
 /**
  * Make the user download a file onto their computer
@@ -27,3 +28,11 @@ export function isImageFile(file: File): boolean {
   const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
   return validImageTypes.some(imageType => imageType === file.type)
 }
+
+export function pointerPositionInElement(element: Element, event: PointerEvent): IVector2 {
+    const elementBounds: DOMRect = element.getBoundingClientRect();
+      return {
+          row: Math.trunc(event.clientY - elementBounds.y),
+          col: Math.trunc(event.clientX - elementBounds.x)
+      }
+    }

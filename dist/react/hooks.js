@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.useCanvasHolderUpdater = exports.useResizeObserver = exports.useCanvas2DUpdater = exports.useWebGL2CanvasUpdater = exports.useHistory = exports.useIsPointerDownState = exports.useIsPointerDown = void 0;
+exports.useWindowEvent = exports.useCanvasHolderUpdater = exports.useResizeObserver = exports.useCanvas2DUpdater = exports.useWebGL2CanvasUpdater = exports.useHistory = exports.useIsPointerDownState = exports.useIsPointerDown = void 0;
 const react_1 = __importDefault(require("react"));
 const HistoryStack_1 = require("../common/HistoryStack");
 const util_1 = require("../browser/util");
@@ -182,3 +182,13 @@ function useCanvasHolderUpdater(canvasRef, canvasHolderRef, ...actions) {
     }, []);
 }
 exports.useCanvasHolderUpdater = useCanvasHolderUpdater;
+function useWindowEvent(event, callback, deps) {
+    const callbackRef = react_1.default.useRef(callback);
+    react_1.default.useEffect(() => {
+        window.removeEventListener(event, callbackRef.current);
+        callbackRef.current = callback;
+        window.addEventListener(event, callbackRef.current);
+        return () => window.removeEventListener(event, callbackRef.current);
+    }, deps);
+}
+exports.useWindowEvent = useWindowEvent;

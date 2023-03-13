@@ -1,3 +1,4 @@
+import { IVector2 } from "../index";
 /**
  * Make the user download a file onto their computer
  *
@@ -9,4 +10,5 @@
 export declare function requestWebDownload(data: Blob, fileName: string): void;
 export declare function isEqualDOMRect(first: DOMRect, second: DOMRect): boolean;
 export declare function isImageFile(file: File): boolean;
+export declare function pointerPositionInElement(element: Element, event: PointerEvent): IVector2;
 //# sourceMappingURL=util.d.ts.map

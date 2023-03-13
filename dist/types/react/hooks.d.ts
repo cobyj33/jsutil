@@ -16,5 +16,6 @@ export declare function useResizeObserver(toObserve: React.RefObject<HTMLElement
  * @param actions variable argument of actions (methods which take no parameters and return void) to take on a canvas holder's resize. will generally be an action to re-render the canvas after changing sizes
  */
 export declare function useCanvasHolderUpdater(canvasRef: React.RefObject<HTMLCanvasElement>, canvasHolderRef: React.RefObject<HTMLElement>, ...actions: Action[]): void;
+export declare function useWindowEvent<T extends keyof WindowEventMap>(event: T, callback: () => void | ((event: WindowEventMap[T]) => void), deps: React.DependencyList): void;
 export {};
 //# sourceMappingURL=hooks.d.ts.map

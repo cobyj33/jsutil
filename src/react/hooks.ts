@@ -199,3 +199,14 @@ export function useCanvasHolderUpdater(canvasRef: React.RefObject<HTMLCanvasElem
         return () => window.removeEventListener('resize', updateCanvasSize);
     }, [])
   }
+
+export function useWindowEvent<T extends keyof WindowEventMap>(event: T, callback: () => void | ((event: WindowEventMap[T]) => void), deps: React.DependencyList) {
+    const callbackRef = React.useRef<() => void | ((event: WindowEventMap[T]) => void)>(callback);
+
+    React.useEffect(() => {
+        window.removeEventListener(event, callbackRef.current);
+        callbackRef.current = callback;
+        window.addEventListener(event, callbackRef.current);
+        return () => window.removeEventListener(event, callbackRef.current);
+    }, deps)
+}
