@@ -8,8 +8,8 @@ const Range_1 = require("./Range");
 class Box {
     topleft;
     size;
-    static ZERO = Box.from(0, 0, 0, 0);
-    static MAX = Box.from(-Math.sqrt(Number.MAX_VALUE) / 2 - 1, -Math.sqrt(Number.MAX_VALUE) / 2 - 1, Math.sqrt(Number.MAX_VALUE) - 1, Math.sqrt(Number.MAX_VALUE) - 1);
+    static ZERO = new Box({ row: 0, col: 0 }, { width: 0, height: 0 });
+    static MAX = new Box({ row: -Math.sqrt(Number.MAX_VALUE) / 2 - 1, col: -Math.sqrt(Number.MAX_VALUE) / 2 - 1 }, { width: Math.sqrt(Number.MAX_VALUE) - 1, height: Math.sqrt(Number.MAX_VALUE) - 1 });
     constructor(topleft, size) {
         this.topleft = Vector2_1.Vector2.fromData(topleft);
         this.size = Dimension_1.Dimension2D.fromData(size);
