@@ -1,4 +1,4 @@
-import { Set2D } from "../src/Set2D"
+import { Set2D } from "../src/common/Set2D"
 
 test("2D Set duplicate test", () => {
     const set = new Set2D();

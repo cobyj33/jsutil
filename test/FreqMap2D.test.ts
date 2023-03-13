@@ -1,4 +1,4 @@
-import { FreqMap2D } from "../src/FreqMap2D"
+import { FreqMap2D } from "../src/common/FreqMap2D"
 
 function has2DTuples(tuple2DArray: Array<[number, number]>, ...tests: Array<[number, number]>): boolean {
     return tests.every(testTuple => tuple2DArray.some(tuple => tuple[0] === testTuple[0] && tuple[1] === testTuple[1]))

@@ -1,5 +1,5 @@
-import { Box } from "../src/Box";
-import { IVector2 } from "../src/Vector2"
+import { Box } from "../src/common/Box";
+import { IVector2 } from "../src/common/Vector2"
 
 test("Equal Boxes", () => {
     const first: Box = Box.from(0, 2, 5, 4);

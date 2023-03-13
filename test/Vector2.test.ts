@@ -1,5 +1,5 @@
-import { filterVector2ListDuplicates } from "../src/Vector2";
-import { Vector2, IVector2, addVector2, scaleVector2, subtractVector2, rotateVector2, distanceBetweenVector2, dotProductVector2, vector2Normalized, vector2ToLength, getVectorLength } from "../src/Vector2"
+import { filterVector2ListDuplicates } from "../src/common/Vector2";
+import { Vector2, IVector2, addVector2, scaleVector2, subtractVector2, rotateVector2, distanceBetweenVector2, dotProductVector2, vector2Normalized, vector2ToLength, getVectorLength } from "../src/common/Vector2"
 
 test('vector2 addition', () => {
     const first = { row: 10, col: 5 };

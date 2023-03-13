@@ -1,4 +1,4 @@
-import { isEqualNumberArray, isSimilarNumberArray, range } from "../src/util"
+import { isEqualNumberArray, isSimilarNumberArray, range } from "../src/common/util"
 
 test("Is Equal Number Array - Exact", () => {
     const arr1 = [0, 2, 6, 3, 4]
