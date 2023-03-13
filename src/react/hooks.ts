@@ -1,5 +1,5 @@
 import React from "react";
-import { HistoryStack } from "../HistoryStack";
+import { HistoryStack } from "../common/HistoryStack";
 import { isEqualDOMRect } from "../browser/util";
 import { StatefulData } from "./util";
 

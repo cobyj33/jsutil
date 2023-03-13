@@ -26,12 +26,21 @@
             "types": {
                 "default": "./dist/types/react/index.d.ts"
             }
+        },
+        "./common": {
+            "import": {
+                "default": "./dist/common/index.js"
+            },
+            "types": {
+                "default": "./dist/types/common/index.d.ts"
+            }
         }
     },
     "typesVersions": {
         "*": {
             "browser": [ "dist/types/browser/index.d.ts"],
-            "react": ["dist/types/react/index.ts"]
+            "react": ["dist/types/react/index.d.ts"],
+            "common": ["dist/types/common/index.d.ts"]
         }
     },
     "main": "./dist/index.js",

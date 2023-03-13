@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useCanvasHolderUpdater = exports.useResizeObserver = exports.useCanvas2DUpdater = exports.useWebGL2CanvasUpdater = exports.useHistory = exports.useIsPointerDownState = exports.useIsPointerDown = void 0;
 const react_1 = __importDefault(require("react"));
-const HistoryStack_1 = require("../HistoryStack");
+const HistoryStack_1 = require("../common/HistoryStack");
 const util_1 = require("../browser/util");
 function useIsPointerDown(target) {
     const isPointerDown = react_1.default.useRef(false);

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.imageToCanvas = exports.getScalingFactor = exports.scaleImage = exports.getImageDataFromFile = exports.getImageDataFromBase64 = exports.getImageData = exports.loadImage = exports.getImageFileBase64 = void 0;
-const util_1 = require("../util");
+const util_1 = require("../common/util");
 // type Pixel = [number, number, number, number]
 async function getImageFileBase64(file) {
     return new Promise((res, rej) => {

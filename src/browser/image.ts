@@ -1,5 +1,5 @@
-import { getErrorMessage } from "../util"
-import { IVector2 } from "../Vector2"
+import { getErrorMessage } from "../common/util"
+import { IVector2 } from "../common/Vector2"
 
 // type Pixel = [number, number, number, number]
 
