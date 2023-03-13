@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.removeVector2ListMatches = exports.filterVector2ListMatches = exports.removeVector2ListDuplicates = exports.filterVector2ListDuplicates = exports.getVector2ListDuplicates = exports.vector2Abs = exports.vector2IsInteger = exports.lerp = exports.vector2Equals = exports.dotProductVector2 = exports.angleBetweenVector2 = exports.midPointBetweenVector2 = exports.distanceBetweenVector2 = exports.vector2FromAngle = exports.roundVector2 = exports.scaleVector2 = exports.subtractVector2 = exports.vector2Int = exports.addVector2 = exports.translateVector2 = exports.vector2ToString = exports.vector2Normalized = exports.vector2AlterToRow = exports.vector2AlterToCol = exports.vector2ToAngle = exports.vector2ToLength = exports.rotateVector2 = exports.getVectorLength = exports.adjacentVector2 = exports.Vector2 = void 0;
+const Set2D_1 = require("./Set2D");
 class Vector2 {
     constructor(row, col) {
         this.row = row;
@@ -239,8 +240,6 @@ function vector2Abs(vec) {
     return { row: Math.abs(vec.row), col: Math.abs(vec.col) };
 }
 exports.vector2Abs = vector2Abs;
-// Program Specific
-const Set2D_1 = require("./Set2D");
 function vector2ListToSet2D(list) {
     const set2D = new Set2D_1.Set2D();
     list.forEach(vec => set2D.add(vec.row, vec.col));

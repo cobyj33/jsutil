@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.concatUint8ClampedArrays = exports.flipObject = exports.isInBounds2D = exports.isError = exports.capitalized = exports.isSimilarNumberArray = exports.isEqualNumberArray = exports.getArrayFrequencyMap = exports.forEach2D = exports.getRectangularMatrixDimensions = exports.isRectangularMatrix = exports.range = exports.clamp = exports.hasDuplicatesGeneric = exports.removeDuplicatesGeneric = void 0;
+exports.concatUint8ClampedArrays = exports.flipObject = exports.isInBounds2D = exports.isError = exports.capitalized = exports.isSimilarNumberArray = exports.isEqualNumberMatrix = exports.isEqualNumberArray = exports.getArrayFrequencyMap = exports.forEach2D = exports.getRectangularMatrixDimensions = exports.isRectangularMatrix = exports.range = exports.clamp = exports.hasDuplicatesGeneric = exports.removeDuplicatesGeneric = void 0;
 /**
  * Generic duplicate removal function
  * Not ideal for performance, but still works in almost all cases
@@ -171,6 +171,32 @@ function isEqualNumberArray(first, second) {
     return true;
 }
 exports.isEqualNumberArray = isEqualNumberArray;
+/**
+ * Determines if two number matrices are equal to each other
+ *
+ * Two number matrices are considered equal if they have the same amount of rows, the same amount of columns in each row, and each data point is equal and in the same place
+ *
+ * @param first A number matrix
+ * @param second Another number matrix
+ * @returns Whether the two matrices are equal according to the described conditions above
+ */
+function isEqualNumberMatrix(first, second) {
+    if (first.length !== second.length) {
+        return false;
+    }
+    for (let row = 0; row < first.length; row++) {
+        if (first[row].length !== second[row].length) {
+            return false;
+        }
+        for (let col = 0; col < first.length; col++) {
+            if (first[row][col] !== second[row][col]) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+exports.isEqualNumberMatrix = isEqualNumberMatrix;
 /**
  * Determines if two number arrays are similar according to if they have the same data points, although they may not be in the same order
  *

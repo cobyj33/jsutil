@@ -66,6 +66,16 @@ export declare function getArrayFrequencyMap<T>(array: T[]): Map<T, number>;
  */
 export declare function isEqualNumberArray(first: number[], second: number[]): boolean;
 /**
+ * Determines if two number matrices are equal to each other
+ *
+ * Two number matrices are considered equal if they have the same amount of rows, the same amount of columns in each row, and each data point is equal and in the same place
+ *
+ * @param first A number matrix
+ * @param second Another number matrix
+ * @returns Whether the two matrices are equal according to the described conditions above
+ */
+export declare function isEqualNumberMatrix(first: number[][], second: number[][]): boolean;
+/**
  * Determines if two number arrays are similar according to if they have the same data points, although they may not be in the same order
  *
  * @param first A number array
