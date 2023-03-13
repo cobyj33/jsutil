@@ -8,8 +8,8 @@ const Range_1 = require("./Range");
 class Box {
     topleft;
     size;
-    static ZERO;
-    static MAX;
+    static ZERO = { topleft: { row: 0, col: 0 }, size: { width: 0, height: 0 } };
+    static MAX = { topleft: { row: -Math.sqrt(Number.MAX_VALUE) / 2 - 1, col: -Math.sqrt(Number.MAX_VALUE) / 2 - 1 }, size: { width: Math.sqrt(Number.MAX_VALUE) - 1, height: Math.sqrt(Number.MAX_VALUE) - 1 } };
     constructor(topleft, size) {
         this.topleft = Vector2_1.Vector2.fromData(topleft);
         this.size = Dimension_1.Dimension2D.fromData(size);
@@ -17,16 +17,12 @@ class Box {
     static from(row, col, width, height) {
         return new Box(new Vector2_1.Vector2(row, col), new Dimension_1.Dimension2D(width, height));
     }
-    static {
-        Box.ZERO = Box.from(0, 0, 0, 0);
-        Box.MAX = Box.from(-Math.sqrt(Number.MAX_VALUE) / 2 - 1, -Math.sqrt(Number.MAX_VALUE) / 2 - 1, Math.sqrt(Number.MAX_VALUE) - 1, Math.sqrt(Number.MAX_VALUE) - 1);
-    }
     static fromData(box) {
         return new Box(box.topleft, box.size);
     }
     static enclosed(points) {
         if (points.length === 0) {
-            return Box.ZERO;
+            return Box.fromData(Box.ZERO);
         }
         let minRow = points[0].row;
         let maxRow = points[0].row;

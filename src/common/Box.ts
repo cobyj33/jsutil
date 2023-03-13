@@ -13,8 +13,8 @@ export class Box implements IBox {
     readonly topleft: Vector2
     readonly size: Dimension2D
 
-    static ZERO: Box
-    static MAX: Box
+    static readonly ZERO: IBox = { topleft: { row: 0, col: 0 }, size: { width: 0, height: 0  } } as const
+    static readonly MAX: IBox = { topleft: { row: -Math.sqrt(Number.MAX_VALUE) / 2 - 1, col: -Math.sqrt(Number.MAX_VALUE) / 2 - 1 }, size: { width: Math.sqrt(Number.MAX_VALUE) - 1, height: Math.sqrt(Number.MAX_VALUE) - 1 }}
 
     constructor(topleft: IVector2, size: IDimension2D) {
         this.topleft = Vector2.fromData(topleft)
@@ -25,18 +25,13 @@ export class Box implements IBox {
         return new Box(new Vector2(row, col), new Dimension2D(width, height))
     }
     
-    static {
-        Box.ZERO = Box.from(0, 0, 0, 0)
-        Box.MAX = Box.from(-Math.sqrt(Number.MAX_VALUE) / 2 - 1, -Math.sqrt(Number.MAX_VALUE) / 2 - 1 ,  Math.sqrt(Number.MAX_VALUE) - 1, Math.sqrt(Number.MAX_VALUE) - 1 )
-    }
-    
-    static fromData(box: IBox) {
+    static fromData(box: IBox): Box {
         return new Box(box.topleft, box.size)
     }
 
-    static enclosed(points: IVector2[]) {
+    static enclosed(points: IVector2[]): Box {
         if (points.length === 0) {
-            return Box.ZERO
+            return Box.fromData(Box.ZERO)
         }
     
         let minRow = points[0].row;
