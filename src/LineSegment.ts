@@ -1,6 +1,11 @@
 import { getLine } from "./shapes";
 import { IVector2, Vector2 } from "./Vector2"
 
+export interface ILineSegment {
+    start: IVector2;
+    end: IVector2;
+}
+
 export class LineSegment implements ILineSegment {
     readonly start: Vector2;
     readonly end: Vector2
@@ -40,7 +45,3 @@ export class LineSegment implements ILineSegment {
     }
 }
 
-export interface ILineSegment {
-    start: IVector2;
-    end: IVector2;
-}

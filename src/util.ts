@@ -1,5 +1,7 @@
 import { IDimension2D } from "./Dimension";
 
+export type Nullable<T> = { [K in keyof T]: T[K] | null };
+
 /**
  * Generic duplicate removal function
  * Not ideal for performance, but still works in almost all cases
@@ -232,8 +234,22 @@ export function capitalized(word: string) {
     return firstLetter.toUpperCase().concat( word.slice(1).toLowerCase() )
 }
 
-export function isError(e: any): e is Error {
+export function isError(e: unknown): e is Error {
     return typeof(e) === "object" && e !== null && "stack" in e && typeof(e.stack) === 'string' && "message" in e && typeof(e.message) === 'string';
+}
+
+export function getErrorMessage(e: unknown): string {
+    if (isError(e)) {
+        return e.message;
+    } else if (typeof(e) === "string") {
+        return e;
+    } else if (typeof(e) === "object" && e !== null && "toString" in e) {
+        return e.toString();
+    } else if (typeof(e) === "number" || typeof(e) === "boolean") {
+        return e.toString()
+    }
+
+    return ""
 }
 
 export function isInBounds2D<T>(matrix: T[][], row: number, col: number) {
@@ -263,3 +279,6 @@ export function concatUint8ClampedArrays(...arrays: Uint8ClampedArray[]): Uint8C
     return newArray
 }
 
+export function isUint8(num: number) {
+    return Number.isInteger(num) && num >= 0 && num < 256
+}

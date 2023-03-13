@@ -57,6 +57,13 @@ export class View implements IView {
     equals(other: View): boolean {
         return this.cellSize === other.cellSize && this.position.equals(other.position)
     }
+
+    data(): IView {
+        return {
+            position: this.position,
+            cellSize: this.cellSize
+        }
+    }
 }
 
 export function getViewOffset(view: IView): IVector2 {

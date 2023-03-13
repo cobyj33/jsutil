@@ -1,6 +1,8 @@
 import { isRawHexNumberString, parseRawHexNumberString } from "./hex";
 import { flipObject } from "./util";
 
+type Uint8 = number
+
 export interface RGB {
     readonly red: number;
     readonly green: number;
@@ -44,13 +46,7 @@ export class Color implements RGBA {
     }
 
     static random(): Color {
-        const color = getRandomColor();
-        return new Color(
-            color.red,
-            color.green,
-            color.blue,
-            color.alpha
-        )
+        return Color.fromRGBA(getRandomColor());
     }
     
     darken(percent: number): Color {

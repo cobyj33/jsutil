@@ -10,6 +10,15 @@ export class Vector2 implements IVector2 {
     readonly col: number
 
     static readonly ZERO: Vector2 = new Vector2(0, 0)
+    static readonly EAST: Vector2 = new Vector2(1, 0)
+    static readonly WEST: Vector2 = new Vector2(-1, 0)
+    static readonly NORTH: Vector2 = new Vector2(0, -1)
+    static readonly SOUTH: Vector2 = new Vector2(0, 1)
+    static readonly NORTHWEST: Vector2 = Vector2.NORTH.add(Vector2.WEST).normalize()
+    static readonly SOUTHWEST: Vector2 = Vector2.SOUTH.add(Vector2.WEST).normalize()
+    static readonly NORTHEAST: Vector2 = Vector2.NORTH.add(Vector2.EAST).normalize()
+    static readonly SOUTHEAST: Vector2 = Vector2.SOUTH.add(Vector2.EAST).normalize()
+
 
     constructor(row: number, col: number) {
         this.row = row;
@@ -146,13 +155,8 @@ export class Vector2 implements IVector2 {
         return adjacentVector2(this).map(vec => Vector2.fromData(vec)) as [Vector2, Vector2, Vector2, Vector2]
     }
 
-    equals(other: any): boolean {
-        if (typeof(other) === "object") {
-            if ("row" in other && "col" in other) {
-                return vector2Equals(this, other)
-            }
-        }
-        return false
+    equals(other: IVector2): boolean {
+        return vector2Equals(this, other)
     }
 
     abs(): Vector2 {
@@ -284,6 +288,12 @@ export function vector2IsInteger(vec: IVector2): boolean {
 
 export function vector2Abs(vec: IVector2): IVector2 {
     return { row: Math.abs(vec.row), col: Math.abs(vec.col) }
+}
+
+export function isIVector2(obj: unknown): obj is IVector2 {
+    return typeof(obj) === "object" && obj !== null && 
+    "row" in obj && "col" in obj && 
+    typeof(obj.row) === "number" && typeof(obj.col) === "number"
 }
 
 

@@ -1,4 +1,4 @@
-import { filterVector2ListDuplicates, IVector2, Vector2 } from "./Vector2";
+import { addVector2, filterVector2ListDuplicates, IVector2, Vector2 } from "./Vector2";
 import { Dimension2D, IDimension2D } from "./Dimension";
 import { LineSegment } from "./LineSegment";
 import { Range, rangeIntersect } from "./Range";
@@ -187,3 +187,7 @@ export class Box implements IBox {
         return this.topleft.equals(other.topleft) && this.size.equals(other.size)
     }
 }
+
+// export function getBoxCorners(box: IBox): [IVector2, IVector2, IVector2, IVector2] {
+//     return [box.topleft, { row: box.topleft.row + box.size.width, }, this.bottomleft, this.bottomright]
+// }
