@@ -12,8 +12,9 @@ export interface IBox {
 export class Box implements IBox {
     readonly topleft: Vector2
     readonly size: Dimension2D
-    static readonly ZERO: Box = Box.from(0, 0, 0, 0)
-    static readonly MAX: Box = Box.from(-Math.sqrt(Number.MAX_VALUE) / 2 - 1, -Math.sqrt(Number.MAX_VALUE) / 2 - 1, Math.sqrt(Number.MAX_VALUE) - 1, Math.sqrt(Number.MAX_VALUE) - 1)
+
+    static readonly ZERO: Box = new Box({ row: 0, col: 0}, { width: 0, height: 0 })
+    static readonly MAX: Box = new Box({ row: -Math.sqrt(Number.MAX_VALUE) / 2 - 1, col: -Math.sqrt(Number.MAX_VALUE) / 2 - 1 }, { width: Math.sqrt(Number.MAX_VALUE) - 1, height: Math.sqrt(Number.MAX_VALUE) - 1 } )
 
     constructor(topleft: IVector2, size: IDimension2D) {
         this.topleft = Vector2.fromData(topleft)
@@ -24,6 +25,7 @@ export class Box implements IBox {
         return new Box(new Vector2(row, col), new Dimension2D(width, height))
     }
 
+    
     static fromData(box: IBox) {
         return new Box(box.topleft, box.size)
     }

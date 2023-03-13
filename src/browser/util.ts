@@ -31,8 +31,8 @@ export function isImageFile(file: File): boolean {
 
 export function pointerPositionInElement(element: Element, event: PointerEvent): IVector2 {
     const elementBounds: DOMRect = element.getBoundingClientRect();
-      return {
-          row: Math.trunc(event.clientY - elementBounds.y),
-          col: Math.trunc(event.clientX - elementBounds.x)
-      }
+    return {
+        row: Math.trunc(event.clientY - elementBounds.y),
+        col: Math.trunc(event.clientX - elementBounds.x)
     }
+}
