@@ -118,6 +118,10 @@ export class Box implements IBox {
         return new Box(topleft, this.size)
     }
 
+    pad(width: number, height: number): Box {
+        return new Box(this.topleft.translate(-height / 2, -width / 2), this.size.expand(width, height))
+    }
+
     expand(width: number, height: number): Box {
         return new Box(this.topleft, this.size.expand(width, height))
     }
