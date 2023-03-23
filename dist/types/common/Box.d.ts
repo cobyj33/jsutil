@@ -31,6 +31,7 @@ export declare class Box implements IBox {
     get bottomleft(): Vector2;
     translate(vector: IVector2): Box;
     setCenter(vector: IVector2): Box;
+    pad(width: number, height: number): Box;
     expand(width: number, height: number): Box;
     pointInside(vec: IVector2): boolean;
     corners(): [Vector2, Vector2, Vector2, Vector2];

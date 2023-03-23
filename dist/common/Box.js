@@ -88,6 +88,9 @@ class Box {
         const topleft = Vector2_1.Vector2.fromData(vector).subtract({ row: this.size.height / 2, col: this.size.width / 2 });
         return new Box(topleft, this.size);
     }
+    pad(width, height) {
+        return new Box(this.topleft.translate(-height / 2, -width / 2), this.size.expand(width, height));
+    }
     expand(width, height) {
         return new Box(this.topleft, this.size.expand(width, height));
     }
