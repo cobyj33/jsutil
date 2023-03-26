@@ -43,3 +43,9 @@ Moved getBlobBase64 to src/browser/util from src/browser/image, as the function 
 Fixed incorrect documentation of isRectangularMatrix and getRectangularMatrixDimensions in src/common/util, which stated that
 a rectangular matrix is required to have a non-zero length. A rectangular matrix can have a non-zero length, as a rectangle can have
 a width or height of 0, and the caller is responsible for asserting that their own matrix-length is non-zero if that is desired.
+
+Removed fromNumberMatrix test for Set2D for deleted function Set2D.fromNumberMatrix
+
+set useIsPointerDown to use React.useCallback for binding and unbinding events
+
+set useIsPointerDownState to use React.useCallback for binding and unbinding events

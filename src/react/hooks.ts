@@ -3,28 +3,28 @@ import { HistoryStack } from "../common/HistoryStack";
 import { isEqualDOMRect } from "../browser/util";
 import { StatefulData } from "./util";
 
-export function useIsPointerDown(target: React.RefObject<HTMLElement>) {
+export function useIsPointerDown(target: React.RefObject<HTMLElement>): React.MutableRefObject<boolean> {
     const isPointerDown: React.MutableRefObject<boolean> = React.useRef<boolean>(false);
     const setPointerTrue: (() => void) = React.useCallback(() => isPointerDown.current = true, [])
     const setPointerFalse: (() => void) = React.useCallback(() => isPointerDown.current = false, [])
 
-    function bindEvents() {
+    const bindEvents = React.useCallback(() => {
         const element: HTMLElement | null = target.current;
         if (element !== null) {
             element.addEventListener('pointerdown', setPointerTrue);
             element.addEventListener('pointerup', setPointerFalse);
             element.addEventListener('pointerleave', setPointerFalse);
         }
-    }
+    }, [])
 
-    function unbindEvents() {
+    const unbindEvents = React.useCallback( () => {
         const element: HTMLElement | null = target.current;
         if (element !== null) {
             element.removeEventListener('pointerdown', setPointerTrue);
             element.removeEventListener('pointerup', setPointerFalse);
             element.removeEventListener('pointerleave', setPointerFalse);
         }
-    }
+    }, [])
 
     React.useEffect( () => {
         unbindEvents();
@@ -40,23 +40,23 @@ export function useIsPointerDownState(target: React.RefObject<HTMLElement>): Sta
     const setPointerTrue: (() => void) = React.useCallback(() => setIsPointerDown(true), [])
     const setPointerFalse: (() => void) = React.useCallback(() => setIsPointerDown(false), [])
 
-    function bindEvents() {
+    const bindEvents = React.useCallback( () => {
         const element: HTMLElement | null = target.current;
         if (element !== null) {
             element.addEventListener('pointerdown', setPointerTrue);
             element.addEventListener('pointerup', setPointerFalse);
             element.addEventListener('pointerleave', setPointerFalse);
         }
-    }
+    }, [])
 
-    function unbindEvents() {
+    const unbindEvents = React.useCallback( () => {
         const element: HTMLElement | null = target.current;
         if (element !== null) {
             element.removeEventListener('pointerdown', setPointerTrue);
             element.removeEventListener('pointerup', setPointerFalse);
             element.removeEventListener('pointerleave', setPointerFalse);
         }
-    }
+    }, [])
 
     React.useEffect( () => {
         unbindEvents();
