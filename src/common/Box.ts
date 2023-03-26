@@ -1,5 +1,5 @@
 import { addVector2, filterVector2ListDuplicates, IVector2, Vector2 } from "./Vector2";
-import { Dimension2D, IDimension2D } from "./Dimension";
+import { Dimension2D, IDimension2D } from "./Dimension2D";
 import { LineSegment } from "./LineSegment";
 import { Range, rangeIntersect } from "./Range";
 

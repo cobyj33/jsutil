@@ -1,7 +1,25 @@
+/**
+ * @author Jacoby Johnson 
+ * @file src/common/Set2D.ts
+ * @brief A Set implementation to hold a unique set of 2D vector values that can easily be queried for existence and iterated over
+ * @version 0.1.0
+ * @date 2023-3-26
+ */
+
 import { IVector2 } from './Vector2';
 
 export class Set2D {
+    /**
+     * @brief This map internally holds all of the data to query into the Set2D. 
+     * 
+     * @summary It consists of a key which represents the first component of a 2-dimensional vector,
+     * with a set of number values which represent any second component values associated with the given first component
+     */
     private map: Map<number, Set<number>> = new Map<number, Set<number>>();
+
+    /**
+     * @brief the internally tracked length of the set
+     */
     private _length: number;
 
     constructor(values: Array<[number, number]> | Set2D = []) {
@@ -9,13 +27,12 @@ export class Set2D {
         values.forEach(value => this.add(value[0], value[1])); 
     }
 
-    fullClear() {
-        this.map = new Map();
-        this._length = 0;
-    }
-
-    clear() {
-        [...this.map.values()].forEach(set => set.clear())
+    clear(total: boolean = false): void {
+        if (total) {
+            this.map = new Map();
+        } else {
+            [...this.map.values()].forEach(set => set.clear())
+        }
         this._length = 0;
     }
 
@@ -25,18 +42,6 @@ export class Set2D {
         const set2D: Set2D = new Set2D();
         values.forEach(value => set2D.add(value.row, value.col));
         return set2D
-    }
-
-    static fromNumberMatrix(values: number[][]): Set2D {
-        const set = new Set2D();
-        for (let row = 0; row < values.length; row++) {
-            for (let col = 0; col < values[row].length; col++) {
-                if (values[row][col] === 1) {
-                    set.add(row, col)
-                }
-            }
-        }
-        return set;
     }
 
     getTuples(): Array<[number, number]> {
@@ -58,7 +63,6 @@ export class Set2D {
         this.map.forEach((set, first) => set.forEach(second => callbackfn([first, second])   ))
     }
     
-
     add(first: number, second: number): void {
         if (this.map.get(first)?.has(second) === false) {
             this.map.get(first)?.add(second); 
@@ -95,14 +99,17 @@ export class Set2D {
         return tuples.length === this.length && this.hasAll(tuples);
     }
 
-    combine(...others: Set2D[]): Set2D {
+    combine(...others: (Set2D | [number, number])[]): Set2D {
         const set = new Set2D();
         set.push(this, ...others);
         return set;
     }
 
-    push(...others: Set2D[]): void {
-        others.forEach(other => other.forEach(tuple => this.add(tuple[0], tuple[1])) );
+    /**
+     * Pushes a set2D
+     */
+    push(...others: (Set2D | [number, number])[]): void {
+        others.forEach(other => Array.isArray(other) ? this.add(other[0], other[1]) : other.forEach(tuple => this.add(tuple[0], tuple[1])) );
     }
 
     *[Symbol.iterator](): IterableIterator<[number, number]> {

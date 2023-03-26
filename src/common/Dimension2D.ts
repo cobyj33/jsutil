@@ -1,3 +1,10 @@
+/**
+ * author: Jacoby Johnson
+ * 
+ * Dimension.ts
+ * Abstraction for manipulating 2D dimensional data in a 
+ */
+
 
 export interface IDimension2D {
     readonly width: number,

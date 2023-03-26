@@ -269,7 +269,6 @@ export function getHexFromCSSColorName(color: CSSColorName): string {
     return CSS_COLOR_NAMES_TO_HEX[color]
 }
 
-
 const SHORTHAND_HEXIDECIMAL_COLOR_STRING_LENGTH = 4; // includes "#" at start
 const SHORTHAND_WITH_ALPHA_HEXIDECIMAL_COLOR_STRING_LENGTH = 5; // includes "#" at start
 const HEXIDECIMAL_COLOR_STRING_LENGTH = 7; // includes "#" at start
