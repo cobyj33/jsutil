@@ -9,7 +9,7 @@ test("Repeated Element", () => {
     freqMap.add(2, 4);
     freqMap.add(2, 4);
     freqMap.add(2, 4);
-    expect(freqMap.get_freq(2, 4) === 3).toBe(true) 
+    expect(freqMap.getFreq(2, 4) === 3).toBe(true) 
 })
 
 describe("Get With Frequency", () => {
@@ -20,7 +20,7 @@ describe("Get With Frequency", () => {
         freqMap.add(3, 4);
         freqMap.add(4, 5);
         freqMap.add(4, 5);
-        const withTwoFrequency = freqMap.get_with_freq(2);
+        const withTwoFrequency = freqMap.getWithFreq(2);
         expect(has2DTuples(withTwoFrequency, [3, 4], [4, 5]) && withTwoFrequency.length === 2).toBe(true)
     })
     
@@ -38,7 +38,7 @@ describe("Get With Frequency", () => {
         freqMap.add(3, 5);
         freqMap.add(3, 5);
     
-        const withTwoFrequency = freqMap.get_with_freq(2);
+        const withTwoFrequency = freqMap.getWithFreq(2);
         expect(has2DTuples(withTwoFrequency, [3, 4], [4, 5]) && withTwoFrequency.length === 2).toBe(true)
     })
     
@@ -56,7 +56,7 @@ describe("Get With Frequency", () => {
         freqMap.add(3, 5);
         freqMap.add(3, 5);
         
-        const withTwoFrequency = freqMap.get_with_freq(0);
+        const withTwoFrequency = freqMap.getWithFreq(0);
         expect(withTwoFrequency.length === 0).toBe(true)
     })
     
@@ -74,7 +74,7 @@ describe("Get With Frequency", () => {
         freqMap.add(3, 5);
         freqMap.add(3, 5);
         
-        expect(() => freqMap.get_with_freq(0.25)).toThrow()
+        expect(() => freqMap.getWithFreq(0.25)).toThrow()
     })
     
     test("Negative Integer", () => {
@@ -91,7 +91,7 @@ describe("Get With Frequency", () => {
         freqMap.add(3, 5);
         freqMap.add(3, 5);
         
-        expect(() => freqMap.get_with_freq(-2)).toThrow()
+        expect(() => freqMap.getWithFreq(-2)).toThrow()
     })
     
     test("Negative Decimal", () => {
@@ -108,7 +108,7 @@ describe("Get With Frequency", () => {
         freqMap.add(3, 5);
         freqMap.add(3, 5);
         
-        expect(() => freqMap.get_with_freq(-2.23)).toThrow()
+        expect(() => freqMap.getWithFreq(-2.23)).toThrow()
     })
 
 })
@@ -119,7 +119,7 @@ test("Addition and Removal", () => {
     freqMap.add(2, 4);
     freqMap.add(2, 4);
     freqMap.remove(2, 4);
-    expect(freqMap.get_freq(2, 4) === 1).toBe(true) 
+    expect(freqMap.getFreq(2, 4) === 1).toBe(true) 
 })
 
 test("Removal of absent value", () => {
@@ -132,15 +132,15 @@ test("Component ordering", () => {
     freqMap.add(2, 4);
     freqMap.add(2, 4);
     freqMap.add(4, 2);
-    expect(freqMap.get_freq(4, 2) === 1 && freqMap.get_freq(2, 4) === 2).toBe(true) 
+    expect(freqMap.getFreq(4, 2) === 1 && freqMap.getFreq(2, 4) === 2).toBe(true) 
 })
 
-test("get_freq Unpresent value", () => {
+test("getFreq Unpresent value", () => {
     const freqMap = new FreqMap2D();
     freqMap.add(4, 2);
     freqMap.add(3, 3);
     freqMap.add(2, 3);
-    expect(freqMap.get_freq(3, 2) === 0).toBe(true)
+    expect(freqMap.getFreq(3, 2) === 0).toBe(true)
 })
 
 describe("has", () => {
@@ -201,7 +201,7 @@ test("get with freqs set", () => {
     freqMap.add(7, 8);
 
 
-    const set = freqMap.get_with_freqs_set(2, 3)
+    const set = freqMap.getSetWithFreq(2, 3)
     console.log(set.getTuples())
     expect(set.hasAllExact([
         [2, 3],
@@ -222,7 +222,7 @@ describe("Add with multiple frequencies", () => {
     test("Value Frequency Correct", () => {
         const map = new FreqMap2D();
         map.add(2, 3, 5)
-        expect(map.get_freq(2, 3)).toBe(5)
+        expect(map.getFreq(2, 3)).toBe(5)
     })
 
     test("Multiple Additions", () => {
@@ -230,7 +230,7 @@ describe("Add with multiple frequencies", () => {
         map.add(2, 3, 5)
         map.add(2, 3, 2)
         map.add(2, 3, 3)
-        expect(map.get_freq(2, 3)).toBe(10)
+        expect(map.getFreq(2, 3)).toBe(10)
     })
 
     test("Multiple Additions with Removals", () => {
@@ -240,7 +240,7 @@ describe("Add with multiple frequencies", () => {
         map.remove(2, 3)
         map.add(2, 3, 3)
         map.remove(2, 3)
-        expect(map.get_freq(2, 3)).toBe(8)
+        expect(map.getFreq(2, 3)).toBe(8)
     })
 
 

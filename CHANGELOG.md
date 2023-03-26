@@ -31,6 +31,8 @@ Removed Set2D.fromNumberMatrix, as it is really specific to the automata project
 Set2D.push can now take in a number pair array ```ts [number, number][]```
 Set2D.combine can now take in a number pair array ```ts [number, number][]```
 
+All functions and fields in FreqMap2D are now in camelCase over snake_case
+
 ### Dev Notes
 
 Renamed src/common/Dimension.ts to src/common/Dimension2D.ts to better reflect src/common/Dimension2D.ts's

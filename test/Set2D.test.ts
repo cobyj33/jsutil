@@ -347,21 +347,3 @@ test("has all", () => {
         [2, 2],
     ])).toBe(true)
 })
-
-test("From number matrix", () => {
-    const matrix = [
-        [0, 0, 0],
-        [1, 1, 1],
-        [0, 1, 0]
-    ]
-
-    const set = Set2D.fromNumberMatrix(matrix);
-    const shouldBePresent: [number, number][] = [
-        [1, 0],
-        [1, 1],
-        [1, 2],
-        [2, 1]
-    ]
-
-    expect(set.hasAll(shouldBePresent)).toBe(true)
-})
